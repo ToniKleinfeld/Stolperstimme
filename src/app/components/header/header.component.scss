@@ -1,0 +1,71 @@
+.app-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  @media (min-width: 768px) {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.app-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  letter-spacing: -0.02em;
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-3xl);
+    gap: var(--space-md);
+  }
+}
+
+.title-icon {
+  font-size: 1.2em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.app-subtitle {
+  font-size: var(--font-size-sm);
+  margin: var(--space-xs) 0 0 0;
+  opacity: 0.9;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-base);
+    margin-top: var(--space-sm);
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .app-header {
+    background: var(--primary-color); // Fallback zu einfachem Hintergrund
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .app-header {
+    background: var(--primary-dark);
+    border-bottom: 2px solid white;
+  }
+
+  .app-subtitle {
+    opacity: 1;
+  }
+}

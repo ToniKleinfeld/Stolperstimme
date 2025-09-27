@@ -1,0 +1,446 @@
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+// Empty State
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-lg);
+  min-height: 120px; // Deutlich kleiner
+  color: var(--text-secondary);
+
+  @media (min-width: 768px) {
+    padding: var(--space-xl);
+    min-height: 150px;
+  }
+
+  @media (min-width: 1200px) {
+    padding: var(--space-md);
+    min-height: 100px; // Noch kleiner für Desktop
+  }
+}
+
+.empty-icon {
+  font-size: 2rem; // Kleineres Icon
+  margin-bottom: var(--space-md);
+  opacity: 0.6;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 1.5rem; // Sehr klein für Desktop
+    margin-bottom: var(--space-sm);
+  }
+}
+
+.empty-title {
+  font-size: var(--font-size-base); // Kleinere Schrift
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs) 0;
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-lg);
+    margin: 0 0 var(--space-sm) 0;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: var(--font-size-sm); // Sehr kleine Schrift für Desktop
+    margin: 0;
+  }
+}
+
+.empty-description {
+  font-size: var(--font-size-sm); // Kleinere Beschreibung
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 300px;
+  line-height: 1.4;
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-base);
+    max-width: 400px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1200px) {
+    display: none; // Beschreibung komplett ausblenden auf Desktop
+  }
+}
+
+// Messages Container
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  scroll-behavior: smooth;
+
+  @media (min-width: 768px) {
+    padding: var(--space-lg);
+    gap: var(--space-xl);
+  }
+}
+
+// Message Styles
+.message {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  animation: messageSlideIn 0.3s ease-out;
+
+  @media (min-width: 768px) {
+    max-width: 70%;
+  }
+
+  &--user {
+    align-self: flex-end;
+
+    .message-header {
+      flex-direction: row-reverse;
+    }
+
+    .message-content {
+      background: var(--primary-color);
+      color: white;
+      border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-md);
+
+      .message-text {
+        color: inherit;
+      }
+    }
+  }
+
+  &--assistant {
+    align-self: flex-start;
+
+    .message-content {
+      background: var(--surface-color);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md) var(--radius-md) var(--radius-md) var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  &--loading {
+    opacity: 0.8;
+  }
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.avatar-icon {
+  font-size: 1.2rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.message-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+  @media (min-width: 768px) {
+    gap: 2px;
+  }
+}
+
+.message-sender {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-primary);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-sm);
+  }
+}
+
+.message-time {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-xs);
+  }
+}
+
+.message-content {
+  padding: var(--space-md);
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding: var(--space-lg);
+  }
+}
+
+.message-text {
+  margin: 0;
+  line-height: 1.5;
+  font-size: var(--font-size-base);
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+// Audio Controls
+.message-audio {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  .message--assistant & {
+    border-top-color: var(--border-light);
+  }
+}
+
+.audio-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 40px;
+
+  .message--assistant & {
+    background: var(--secondary-light);
+    color: var(--secondary-dark);
+    border-color: var(--secondary-color);
+
+    &:hover:not(:disabled) {
+      background: var(--secondary-color);
+      color: white;
+    }
+  }
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &--playing {
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+
+    .message--assistant & {
+      background: var(--secondary-color);
+      color: white;
+    }
+  }
+
+  &--loading {
+    pointer-events: none;
+  }
+}
+
+.audio-unavailable {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  background: var(--border-light);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.audio-icon {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.audio-text {
+  font-weight: 500;
+}
+
+// Loading/Typing Indicator
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--primary-color);
+  animation: typingDot 1.4s infinite ease-in-out;
+
+  &:nth-child(1) { animation-delay: 0s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.4s; }
+}
+
+// Scroll to Bottom Button
+.scroll-to-bottom {
+  position: absolute;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  z-index: 10;
+
+  &:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.scroll-icon {
+  font-size: 1.1em;
+}
+
+// Animations
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  30% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .message {
+    animation: none;
+  }
+
+  .typing-dot {
+    animation: none;
+  }
+
+  .audio-button:hover:not(:disabled),
+  .scroll-to-bottom:hover {
+    transform: none;
+  }
+
+  .messages-container {
+    scroll-behavior: auto;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .message--user .message-content {
+    border: 2px solid white;
+  }
+
+  .message--assistant .message-content {
+    border: 2px solid var(--text-primary);
+  }
+
+  .audio-button {
+    border-width: 2px;
+  }
+
+  .scroll-to-bottom {
+    border: 2px solid white;
+  }
+}
+
+// Dark mode considerations (for future implementation)
+@media (prefers-color-scheme: dark) {
+  .message--user .message-content {
+    background: var(--primary-dark);
+  }
+
+  .empty-icon {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,549 @@
+.message-input {
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-light);
+  padding: var(--space-md);
+  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+
+  @media (min-width: 768px) {
+    padding: var(--space-lg);
+  }
+
+  @media (min-width: 1200px) {
+    // Für Desktop: normaler Flow mit anderem Styling
+    position: static;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-md);
+    border: 1px solid var(--border-light);
+  }
+}// Speech Error Display
+.speech-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error-color);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  animation: errorSlideIn 0.3s ease-out;
+}
+
+.error-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.error-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.error-text {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--error-color);
+  line-height: 1.4;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+.error-dismiss {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--error-color);
+  }
+}
+
+// Speech Active Indicator
+.speech-active {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+  border: 2px solid var(--primary-color);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  animation: speechActiveSlideIn 0.4s ease-out;
+}
+
+.speech-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+}
+
+.speech-animation {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--radius-full);
+  animation: pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+
+  &--delay1 {
+    animation-delay: 0.7s;
+  }
+
+  &--delay2 {
+    animation-delay: 1.4s;
+  }
+}
+
+.mic-icon {
+  font-size: 1.8rem;
+  z-index: 1;
+  background: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.speech-text {
+  flex: 1;
+
+  strong {
+    font-size: var(--font-size-lg);
+    color: var(--primary-dark);
+    font-weight: 700;
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+}
+
+.speech-hint {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.speech-stop {
+  background: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+
+  &:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Transcript Preview
+.transcript-preview {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  animation: transcriptFadeIn 0.3s ease-out;
+}
+
+.transcript-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+}
+
+.transcript-text {
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+// Main Input Form
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.input-group {
+  display: flex;
+  align-items: stretch; // Wichtig: volle Höhe ausnutzen
+  gap: var(--space-xs); // Kleinerer Gap für Mobile
+  background: var(--surface-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  min-height: 60px; // Mindesthöhe für Mobile
+
+  &--focused {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+
+  &:hover:not(.input-group--focused) {
+    border-color: var(--text-secondary);
+  }
+
+  @media (min-width: 768px) {
+    gap: var(--space-md);
+    min-height: 70px;
+  }
+}
+
+.text-input-container {
+  flex: 1;
+  position: relative;
+  min-width: 0; // Für Flex-Shrinking
+}
+
+.message-textarea {
+  width: 100%;
+  height: 100%; // Volle Höhe des Containers nutzen
+  min-height: 44px;
+  max-height: 120px;
+  padding: var(--space-md);
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  line-height: 1.5;
+  resize: none;
+  font-family: inherit;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  // Error state styling is handled by parent input-group
+  &--error {
+    color: var(--error-color);
+  }
+
+  @media (min-width: 768px) {
+    padding: var(--space-lg);
+    min-height: 52px;
+  }
+}
+
+.character-counter {
+  position: absolute;
+  bottom: var(--space-xs);
+  right: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  background: var(--surface-color);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+
+  &--warning {
+    color: var(--warning-color);
+    font-weight: 600;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row; // Immer nebeneinander, auch im Mobile
+  gap: var(--space-xs);
+  padding: var(--space-xs);
+  align-items: stretch; // Volle Höhe ausnutzen
+
+  @media (min-width: 768px) {
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+  }
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--space-xs);
+  min-width: 48px; // Kleiner für Mobile
+  width: 48px; // Feste Breite
+  height: 100%; // Volle Container-Höhe
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-light);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  @media (min-width: 768px) {
+    min-width: 80px;
+    width: auto;
+    min-height: 52px;
+    height: auto;
+    flex-direction: row;
+    gap: var(--space-xs);
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-size-sm);
+  }
+}
+
+.btn-icon {
+  font-size: 1.2rem; // 80% von 1.5rem
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+  }
+}
+
+.btn-text {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+// Microphone Button
+.mic-btn {
+  background: var(--border-light);
+  color: var(--text-secondary);
+
+  &:not(:disabled):hover {
+    background: var(--secondary-light);
+    color: var(--secondary-dark);
+  }
+
+  &--active {
+    background: var(--error-color);
+    color: white;
+    animation: micPulse 1s ease-in-out infinite;
+
+    &:not(:disabled):hover {
+      background: #dc2626;
+    }
+  }
+
+  &--disabled {
+    background: var(--border-light);
+    color: var(--text-muted);
+  }
+}
+
+// Send Button
+.send-btn {
+  background: var(--primary-color);
+  color: white;
+
+  &:not(:disabled):hover {
+    background: var(--primary-dark);
+  }
+
+  &--loading {
+    pointer-events: none;
+  }
+
+  &:disabled {
+    background: var(--border-color);
+    color: var(--text-muted);
+  }
+}
+
+// Form Validation Errors
+.form-error {
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error-color);
+  border-radius: var(--radius-md);
+  color: var(--error-color);
+  font-size: var(--font-size-sm);
+  border-left-width: 4px;
+}
+
+// Input Hints
+.input-hints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: var(--space-lg);
+  }
+}
+
+.hint-item {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+
+  kbd {
+    background: var(--border-light);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    font-family: monospace;
+    border: 1px solid var(--border-color);
+  }
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Animations
+@keyframes errorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes speechActiveSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes transcriptFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes micPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .speech-error,
+  .speech-active,
+  .transcript-preview {
+    animation: none;
+  }
+
+  .pulse-ring {
+    animation: none;
+    opacity: 0.3;
+  }
+
+  .mic-btn--active {
+    animation: none;
+  }
+
+  .action-btn:not(:disabled):hover {
+    transform: none;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .input-group {
+    border-width: 3px;
+
+    &--focused {
+      border-width: 3px;
+    }
+  }
+
+  .speech-error,
+  .transcript-preview {
+    border-width: 2px;
+  }
+
+  .action-btn {
+    border: 2px solid currentColor;
+  }
+}

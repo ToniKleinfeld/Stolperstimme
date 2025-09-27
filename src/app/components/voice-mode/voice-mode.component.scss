@@ -1,0 +1,503 @@
+.voice-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: var(--space-xl);
+  background: var(--background-color);
+
+  @media (min-width: 768px) {
+    padding: var(--space-2xl);
+  }
+}
+
+.voice-interface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2xl);
+  max-width: 600px;
+  width: 100%;
+}
+
+// Voice Status Area
+.voice-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 300px;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    min-height: 400px;
+  }
+}
+
+.voice-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  position: relative;
+
+  &--listening {
+    .voice-icon {
+      animation: micPulse 1.5s ease-in-out infinite;
+    }
+  }
+
+  &--processing {
+    .voice-icon {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  &--speaking {
+    .voice-icon {
+      animation: speakerPulse 0.8s ease-in-out infinite;
+    }
+  }
+
+  &--idle {
+    .voice-icon {
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Voice Icon Container
+.voice-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  background: var(--surface-color);
+  border: 4px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  z-index: 10;
+
+  @media (min-width: 768px) {
+    width: 150px;
+    height: 150px;
+    font-size: 5rem;
+  }
+
+  &.mic-icon {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-color: var(--primary-color);
+  }
+
+  &.speaker-icon {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+    color: white;
+    border-color: var(--secondary-color);
+  }
+
+  &.processing-icon {
+    background: linear-gradient(135deg, var(--text-secondary) 0%, var(--text-primary) 100%);
+    color: white;
+    border-color: var(--text-secondary);
+  }
+
+  &.idle-icon {
+    background: var(--border-light);
+    color: var(--text-secondary);
+  }
+}
+
+// Pulse Rings für Listening Animation
+.pulse-ring {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 3px solid var(--primary-color);
+  border-radius: var(--radius-full);
+  animation: pulseRing 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    width: 170px;
+    height: 170px;
+  }
+
+  &--delay1 {
+    animation-delay: 0.7s;
+  }
+
+  &--delay2 {
+    animation-delay: 1.4s;
+  }
+}
+
+// Audio Waves für Speaking Animation
+.audio-wave {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 3px solid var(--secondary-color);
+  border-radius: var(--radius-full);
+  animation: audioWave 1s ease-in-out infinite;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    width: 170px;
+    height: 170px;
+  }
+
+  &--delay1 {
+    animation-delay: 0.3s;
+  }
+
+  &--delay2 {
+    animation-delay: 0.6s;
+  }
+}
+
+// Voice Text Content
+.voice-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+
+  h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: var(--font-size-2xl);
+    }
+  }
+
+  p {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+
+    @media (min-width: 768px) {
+      font-size: var(--font-size-lg);
+    }
+  }
+}
+
+// Transcript Preview
+.transcript-preview {
+  background: var(--surface-color);
+  border: 2px solid var(--primary-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+  font-style: italic;
+  color: var(--text-primary);
+  max-width: 400px;
+  line-height: 1.4;
+  box-shadow: var(--shadow-sm);
+}
+
+// Voice Actions (Buttons)
+.voice-actions {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.voice-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  min-width: 100px;
+  min-height: 80px;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-md);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  &:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  @media (min-width: 768px) {
+    min-width: 120px;
+    min-height: 100px;
+    padding: var(--space-xl);
+    font-size: var(--font-size-base);
+  }
+
+  .btn-icon {
+    font-size: 2rem;
+    line-height: 1;
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .btn-text {
+    font-weight: 700;
+  }
+
+  &--primary {
+    background: var(--primary-color);
+    color: white;
+
+    &:not(:disabled):hover {
+      background: var(--primary-dark);
+    }
+
+    &--disabled {
+      background: var(--border-color);
+      color: var(--text-muted);
+    }
+  }
+
+  // Active/Recording State - separate for better specificity
+  &--active {
+    background: var(--error-color) !important;
+    animation: buttonPulse 1s ease-in-out infinite;
+
+    &:not(:disabled):hover {
+      background: #dc2626 !important;
+    }
+
+    .btn-icon {
+      animation: stopIconPulse 0.8s ease-in-out infinite;
+    }
+  }
+
+  // Alternative selector using data attribute
+  &[data-state="listening"],
+  &[data-state="processing"] {
+    background: var(--error-color) !important;
+    animation: buttonPulse 1s ease-in-out infinite;
+
+    &:not(:disabled):hover {
+      background: #dc2626 !important;
+    }
+
+    .btn-icon {
+      animation: stopIconPulse 0.8s ease-in-out infinite;
+    }
+  }
+
+  &--secondary {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+
+    &:not(:disabled):hover {
+      background: var(--border-light);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+  }
+}
+
+// Error Display
+.voice-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 2px solid var(--error-color);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 500px;
+  animation: errorSlideIn 0.3s ease-out;
+}
+
+.error-content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+}
+
+.error-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.error-text {
+  flex: 1;
+  color: var(--error-color);
+  line-height: 1.4;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.error-dismiss {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--error-color);
+  }
+}
+
+// Animations
+@keyframes micPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-lg);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+}
+
+@keyframes speakerPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-lg);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-xl), 0 0 15px rgba(249, 115, 22, 0.3);
+  }
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes stopIconPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes audioWave {
+  0% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes errorSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .voice-animation,
+  .pulse-ring,
+  .audio-wave,
+  .voice-btn,
+  .voice-error {
+    animation: none;
+  }
+
+  .voice-btn:not(:disabled):hover {
+    transform: none;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .voice-icon {
+    border-width: 4px;
+  }
+
+  .voice-btn {
+    border: 3px solid currentColor;
+  }
+
+  .voice-error {
+    border-width: 3px;
+  }
+}

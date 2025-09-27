@@ -1,0 +1,42 @@
+<div class="app-layout">
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="app-branding">
+        <img
+          src="assets/img/logo_bright.png"
+          alt="Stolperstimme Logo"
+          class="app-logo"
+          (click)="clearChat()"
+          role="button"
+          tabindex="0"
+          [attr.aria-label]="'Chat leeren - Neue Unterhaltung beginnen'"
+          (keydown.enter)="clearChat()"
+          (keydown.space)="clearChat()">
+        <h1 class="app-title">Stolperstimme</h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content" [attr.data-mode]="currentMode">
+    @if (isInitialized) {
+      @if (currentMode === 'voice') {
+        <app-voice-mode
+          (switchMode)="switchToMode('chat')"
+          class="mode-container">
+        </app-voice-mode>
+      } @else {
+        <app-chat-mode
+          (switchMode)="switchToMode('voice')"
+          class="mode-container">
+        </app-chat-mode>
+      }
+    } @else {
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Anwendung wird geladen...</p>
+      </div>
+    }
+  </main>
+</div>

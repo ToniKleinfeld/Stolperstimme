@@ -1,0 +1,251 @@
+// App Layout Container
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: var(--background-color);
+  overflow: hidden;
+  position: relative;
+}
+
+// App Header
+.app-header {
+  flex-shrink: 0;
+  background: var(--surface-color);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  z-index: 100;
+
+  @media (min-width: 768px) {
+    border-bottom: 2px solid var(--border-light);
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    padding: var(--space-lg) var(--space-xl);
+  }
+}
+
+// App Branding
+.app-branding {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+// App Logo
+.app-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs);
+  margin: calc(-1 * var(--space-xs));
+
+  &:hover {
+    transform: scale(1.05);
+    background: var(--primary-light);
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--primary-light);
+    background: var(--primary-light);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @media (min-width: 768px) {
+    height: 56px;
+  }
+}
+
+.app-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+
+
+
+
+// Main Content Area
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+
+  // Mode-specific styling
+  &[data-mode="voice"] {
+    background: linear-gradient(135deg,
+      var(--primary-light) 0%,
+      var(--background-color) 50%,
+      var(--surface-color) 100%);
+  }
+
+  &[data-mode="chat"] {
+    background: var(--background-color);
+  }
+}
+
+// Mode Container
+.mode-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+
+  // Ensure mode components take full height
+  app-voice-mode,
+  app-chat-mode {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    width: 100%;
+  }
+}
+
+// Loading State
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--text-secondary);
+  flex: 1;
+  min-height: 200px;
+
+  p {
+    margin: var(--space-md) 0 0 0;
+    font-size: var(--font-size-base);
+    color: var(--text-primary);
+  }
+
+  @media (min-width: 768px) {
+    padding: var(--space-2xl);
+    min-height: 300px;
+  }
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-light);
+  border-top: 3px solid var(--primary-color);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+
+  @media (min-width: 768px) {
+    width: 50px;
+    height: 50px;
+    border-width: 4px;
+  }
+}
+
+// Animations
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive adjustments
+@media (min-width: 768px) {
+  .main-content {
+    padding: 0 var(--space-md);
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-content {
+    padding: var(--space-lg);
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+    border-top-color: var(--primary-color);
+  }
+
+  .main-content {
+    background: var(--background-color) !important;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .app-header {
+    border-bottom-width: 3px;
+    border-bottom-color: var(--text-primary);
+  }
+
+  .current-mode {
+    border: 2px solid var(--primary-color);
+    background: var(--surface-color);
+  }
+
+  .main-content {
+    background: var(--background-color) !important;
+  }
+
+  .loading-spinner {
+    border-width: 4px;
+    border-color: var(--text-primary);
+    border-top-color: var(--primary-color);
+  }
+}
+
+// Print styles
+@media print {
+  .app-header {
+    position: static;
+    box-shadow: none;
+    border-bottom: 2px solid #000;
+  }
+
+
+
+  .main-content {
+    background: white !important;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .loading-state {
+    display: none;
+  }
+}

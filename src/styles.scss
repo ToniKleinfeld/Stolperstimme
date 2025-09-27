@@ -1,0 +1,106 @@
+// Design System Variables
+:root {
+  // Colors - Stolperstein Brand (inspired by brass/copper)
+  --primary-color: #B8860B;      // Dark Goldenrod (Messing)
+  --secondary-color: #CD853F;    // Peru (warmes Kupfer)
+  --primary-light: #F5DEB3;      // Wheat (helles Gold)
+  --secondary-light: #DEB887;    // Burlywood (helles Kupfer)
+  --primary-dark: #8B7355;       // Dark Khaki (dunkles Messing)
+  --secondary-dark: #A0522D;     // Sienna (dunkles Kupfer)
+
+  // Neutrals (warmer tones)
+  --background-color: #FDF6E3;   // warmer off-white
+  --surface-color: #FFFEF7;      // cream white
+  --text-primary: #2F2F2F;       // warm dark gray
+  --text-secondary: #6B6B47;     // warm gray with hint of gold
+  --text-muted: #8B8B7A;         // muted warm gray
+  --border-color: #E6E6DA;       // warm light gray
+  --border-light: #F0F0EA;       // very light warm gray
+
+  // Status Colors (warmer tones)
+  --success-color: #228B22;        // Forest Green (warmer)
+  --error-color: #CD5C5C;          // Indian Red (warmer)
+  --warning-color: #DAA520;        // Goldenrod (matches theme)
+
+  // Spacing Scale
+  --space-xs: 0.25rem;    // 4px
+  --space-sm: 0.5rem;     // 8px
+  --space-md: 1rem;       // 16px
+  --space-lg: 1.5rem;     // 24px
+  --space-xl: 2rem;       // 32px
+  --space-2xl: 3rem;      // 48px
+
+  // Border Radius
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 50%;
+
+  // Typography
+  --font-size-xs: 0.75rem;   // 12px
+  --font-size-sm: 0.875rem;  // 14px
+  --font-size-base: 1rem;    // 16px
+  --font-size-lg: 1.125rem;  // 18px
+  --font-size-xl: 1.25rem;   // 20px
+  --font-size-2xl: 1.5rem;   // 24px
+  --font-size-3xl: 2rem;     // 32px
+
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+// Base Styles
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Utility Classes
+.d-none {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* open-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/open-sans-v40-latin-regular.woff2")
+    format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* open-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/assets/fonts/open-sans-v40-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
