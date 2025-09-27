@@ -33,8 +33,11 @@ jobs:
       - name: Build Angular app
         run: npx ng build --configuration production --base-href "/simple-web-app/"
 
-      - name: Setup Pages
+      - name: Setup Pages (with auto-enablement)
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
+        continue-on-error: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

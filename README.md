@@ -9,27 +9,26 @@ Eine moderne, mobile-first Angular-Anwendung für interaktive Gespräche über S
 ### ✨ Hauptfeatures
 
 - 📱 **Mobile-First Design** - Optimiert für Smartphones und Tablets
-- 🎤 **Spracherkennung** - Fragen per Spracheingabe stellen (Web Speech API)
+- 🎤 **Dual-Mode Interface** - Wechsel zwischen Voice- und Chat-Modus
 - 🔊 **Audio-Wiedergabe** - Antworten als lokale Audio-Dateien abspielen
 - 💬 **Echtzeit-Chat** - Sofortige Anzeige von Fragen und Antworten
 - 🎨 **Modernes Design** - Abgerundete UI mit durchdachter Farbpalette
 - ♿ **Barrierefreiheit** - ARIA-Labels, Fokusmanagement, Screen Reader Support
-- 💾 **Session-Persistierung** - Eingaben bleiben während der Sitzung erhalten
+- � **GitHub Pages Deployment** - Automatisches Hosting via GitHub Actions
 
 ## 🚀 Schnellstart
 
 ### Voraussetzungen
 
-- Node.js (Version 18 oder höher)
-- Angular CLI (`npm install -g @angular/cli`)
-- Ein moderner Web-Browser mit Web Speech API Support
+- Node.js (Version 20 oder höher)
+- Ein moderner Web-Browser
 
 ### Installation & Start
 
 ```bash
 # Repository klonen
-git clone <repository-url>
-cd stolperstimme
+git clone https://github.com/stolperstimme/simple-web-app.git
+cd simple-web-app
 
 # Dependencies installieren
 npm install
@@ -47,9 +46,16 @@ ng serve
 ```bash
 # Optimierten Build erstellen
 npm run build
-# oder
-ng build --configuration production
+
+# Build für GitHub Pages
+npm run build:github-pages
 ```
+
+## 🌐 Live Demo
+
+Die App ist live verfügbar unter: **https://stolperstimme.github.io/simple-web-app/**
+
+Automatisches Deployment erfolgt bei jedem Push zum `main` Branch über GitHub Actions.
 
 ## 📁 Projektstruktur
 
@@ -57,18 +63,22 @@ ng build --configuration production
 src/
 ├── app/
 │   ├── components/           # UI-Komponenten
-│   │   ├── header/          # App-Header mit Titel
-│   │   ├── identity-form/   # Name & Jahrgang Eingabe
+│   │   ├── header/          # App-Header mit Navigation
+│   │   ├── chat-mode/       # Chat-Interface-Komponente
+│   │   ├── voice-mode/      # Voice-Interface-Komponente
 │   │   ├── chat-list/       # Nachrichtenverlauf
-│   │   └── message-input/   # Text- & Spracheingabe
+│   │   └── message-input/   # Text-Eingabe-Komponente
 │   ├── services/            # Business Logic Services
 │   │   ├── chat.service.ts          # Chat State Management
 │   │   ├── speech.service.ts        # Spracherkennung
 │   │   └── audio-player.service.ts  # Audio-Wiedergabe
 │   └── main/                # Haupt-Layout-Komponente
-├── assets/
-│   ├── fonts/               # Custom Fonts (Open Sans)
-│   └── audio/               # Audio-Dateien für Antworten
+├── public/
+│   ├── assets/
+│   │   ├── fonts/           # Custom Fonts (Open Sans)
+│   │   ├── img/             # Logo-Dateien
+│   │   └── audio/           # Audio-Dateien für Antworten
+│   └── 404.html             # GitHub Pages SPA Support
 └── styles.scss              # Globale Styles & Design System
 ```
 
@@ -89,14 +99,19 @@ src/
 
 ### Core Technologies
 - **Angular 19** - Framework mit Signals und Control Flow
-- **TypeScript** - Typsichere Entwicklung
+- **TypeScript 5.7** - Typsichere Entwicklung
 - **RxJS** - Reactive Programming für State Management
 - **SCSS** - Advanced CSS mit Variablen und Mixins
 
 ### Browser APIs
 - **Web Speech API** - Spracherkennung (`SpeechRecognition`)
 - **HTMLAudioElement** - Audio-Wiedergabe lokaler Dateien
-- **SessionStorage** - Persistierung der Chat-Session
+- **LocalStorage** - Persistierung der App-Modi
+
+### Deployment & CI/CD
+- **GitHub Actions** - Automatisches Build und Deployment
+- **GitHub Pages** - Kostenloses Hosting für statische Sites
+- **Angular CLI** - Build-Optimierung und Bundle Management
 
 ### Accessibility Features
 - **ARIA Labels** - Screen Reader Unterstützung
@@ -177,20 +192,32 @@ Die wichtigsten Services sind mit umfassenden Unit Tests abgedeckt:
 
 ## 🚀 Deployment
 
+### Automatisches Deployment
+Das Projekt nutzt GitHub Actions für automatisches Deployment:
+
+```yaml
+# .github/workflows/deploy.yml
+name: Deploy Angular App to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+```
+
 ### Build-Optimierung
 ```bash
 # Production Build mit Optimierungen
-ng build --configuration production
+npm run build
 
-# Build-Analyse (Bundle Size)
-npm run build:analyze
+# Build für GitHub Pages (mit korrekter base-href)
+npm run build:github-pages
 ```
 
 ### Wichtige Build-Features
 - **Tree Shaking** - Entfernung ungenutzten Codes
 - **AOT Compilation** - Ahead-of-Time Template-Kompilierung
-- **Service Worker** - Offline-Funktionalität (optional)
-- **Code Splitting** - Lazy Loading für bessere Performance
+- **Bundle Budgets** - Größenkontrolle für Components (15kB limit)
+- **GitHub Pages SPA Support** - 404.html für Client-Side Routing
 
 ## 🔒 Privacy & Sicherheit
 
@@ -204,31 +231,48 @@ npm run build:analyze
 - Klare Anzeige des Aufnahme-Status
 - Einfache Möglichkeit zum Stoppen/Abbrechen
 
+## 🛠️ Development
+
+### Available Scripts
+```bash
+npm start              # Development server (http://localhost:4200)
+npm run build          # Production build
+npm run build:github-pages  # Build for GitHub Pages deployment
+npm test              # Run unit tests
+npm run watch         # Build with watch mode
+```
+
+### Environment Setup
+1. Clone the repository
+2. Install Node.js 20+
+3. Run `npm install`
+4. Start development with `npm start`
+
 ## 🤝 Contributing
 
 ### Development Workflow
-1. Feature Branch erstellen (`git checkout -b feature/amazing-feature`)
-2. Änderungen committen (`git commit -m 'Add amazing feature'`)
-3. Branch pushen (`git push origin feature/amazing-feature`)
-4. Pull Request erstellen
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
 ### Code Standards
-- **Prettier** für Code-Formatierung
-- **ESLint** für Code-Qualität
-- **Conventional Commits** für einheitliche Commit-Messages
-- **Angular Style Guide** befolgen
+- Angular Style Guide compliance
+- TypeScript strict mode
+- SCSS for styling
+- Responsive design principles
 
 ## 📄 Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz veröffentlicht. Siehe `LICENSE` Datei für Details.
+Dieses Projekt ist unter der MIT-Lizenz veröffentlicht.
 
 ## 🙏 Danksagung
 
 - **Angular Team** - Für das großartige Framework
 - **Open Sans** - Für die barrierefreie Schriftart
-- **Web Speech API** - Für die Browser-native Spracherkennung
+- **GitHub** - Für das kostenlose Hosting via GitHub Pages
 
 ---
 
 **Made with ❤️ for digital remembrance**
-# simple-web-app
