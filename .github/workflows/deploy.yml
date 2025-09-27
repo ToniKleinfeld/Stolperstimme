@@ -42,7 +42,7 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist/stolperstimme"
+          path: "./dist/stolperstimme/browser"
 
   deploy:
     runs-on: ubuntu-latest

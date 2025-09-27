@@ -5,9 +5,34 @@
   <title>Stolperstimme</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<style>:root{--primary-color:#3B82F6;--secondary-color:#F97316;--primary-light:#DBEAFE;--secondary-light:#FED7AA;--primary-dark:#1E3A8A;--secondary-dark:#C2410C;--background-color:#FAFAFA;--surface-color:#FFFFFF;--text-primary:#1F2937;--text-secondary:#6B7280;--text-muted:#9CA3AF;--border-color:#E5E7EB;--border-light:#F3F4F6;--success-color:#10B981;--error-color:#EF4444;--warning-color:#F59E0B;--space-xs:.25rem;--space-sm:.5rem;--space-md:1rem;--space-lg:1.5rem;--space-xl:2rem;--space-2xl:3rem;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-full:50%;--font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-base:1rem;--font-size-lg:1.125rem;--font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:2rem;--shadow-sm:0 1px 2px 0 rgb(0 0 0 / .05);--shadow-md:0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1)}*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-weight:400;font-size:var(--font-size-base);line-height:1.5;color:var(--text-primary);background-color:var(--background-color);scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}@font-face{font-display:swap;font-family:Open Sans;font-style:normal;font-weight:400;src:url(/assets/fonts/open-sans-v40-latin-regular.woff2) format("woff2")}@font-face{font-display:swap;font-family:Open Sans;font-style:normal;font-weight:700;src:url(/assets/fonts/open-sans-v40-latin-700.woff2) format("woff2")}</style><link rel="stylesheet" href="styles-TASIS3CJ.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-TASIS3CJ.css"></noscript></head>
+  <link rel="icon" type="image/png" href="assets/img/logo_bright.png">
+  
+  <!-- Start Single Page Apps for GitHub Pages -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafrex/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
+  <!-- End Single Page Apps for GitHub Pages -->
+<style>:root{--primary-color:#B8860B;--secondary-color:#CD853F;--primary-light:#F5DEB3;--secondary-light:#DEB887;--primary-dark:#8B7355;--secondary-dark:#A0522D;--background-color:#FDF6E3;--surface-color:#FFFEF7;--text-primary:#2F2F2F;--text-secondary:#6B6B47;--text-muted:#8B8B7A;--border-color:#E6E6DA;--border-light:#F0F0EA;--success-color:#228B22;--error-color:#CD5C5C;--warning-color:#DAA520;--space-xs:.25rem;--space-sm:.5rem;--space-md:1rem;--space-lg:1.5rem;--space-xl:2rem;--space-2xl:3rem;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;--radius-full:50%;--font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-base:1rem;--font-size-lg:1.125rem;--font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:2rem;--shadow-sm:0 1px 2px 0 rgb(0 0 0 / .05);--shadow-md:0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1)}*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Open Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;font-weight:400;font-size:var(--font-size-base);line-height:1.5;color:var(--text-primary);background-color:var(--background-color);scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}@font-face{font-display:swap;font-family:Open Sans;font-style:normal;font-weight:400;src:url(/assets/fonts/open-sans-v40-latin-regular.woff2) format("woff2")}@font-face{font-display:swap;font-family:Open Sans;font-style:normal;font-weight:700;src:url(/assets/fonts/open-sans-v40-latin-700.woff2) format("woff2")}</style><link rel="stylesheet" href="styles-FXBVNWFM.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-FXBVNWFM.css"></noscript></head>
 <body>
   <app-root></app-root>
-<script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="main-O347I7JL.js" type="module"></script></body>
+<script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="main-K6NCA3WP.js" type="module"></script></body>
 </html>
