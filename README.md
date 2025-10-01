@@ -1,3 +1,7 @@
+# Vorwort
+
+Mein persönliches Ziel dieses Front end bei dem MSHack25 war es , das Projekt kommplet nur mit AI Agents zu generieren und funktionstüchtig zu machen um ein besseres Gespür dafür zu bekommen wie diese interpretiert und verabeitet werden, wo es es probleme geben kann und wie ich die KI zum richtigen bzw gewollten Ergebnis bringe und dabei nur  Code review und Promting nutze.
+
 # 🗣️ Stolperstimme
 
 Eine moderne, mobile-first Angular-Anwendung für interaktive Gespräche über Stolpersteine mit Text- und Audio-Ausgabe.
