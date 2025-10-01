@@ -1,6 +1,6 @@
-# Vorwort
+# 🤖 Vorwort
 
-Mein persönliches Ziel dieses Front end bei dem MSHack25 war es , das Projekt kommplet nur mit AI Agents zu generieren und funktionstüchtig zu machen um ein besseres Gespür dafür zu bekommen wie diese interpretiert und verabeitet werden, wo es es probleme geben kann und wie ich die KI zum richtigen bzw gewollten Ergebnis bringe und dabei nur  Code review und Promting nutze.
+Mein persönliches Ziel beim MSHack25 war es, das Frontend komplett nur mit AI-Agents zu generieren und funktionstüchtig zu machen. Dadurch wollte ich ein besseres Gespür dafür bekommen, wie diese interpretiert und verarbeitet werden, wo es Probleme geben kann und wie ich die KI zum richtigen bzw. gewünschten Ergebnis bringe. Dabei habe ich ausschließlich Code-Review und Prompting genutzt.
 
 # 🗣️ Stolperstimme
 
