@@ -265,7 +265,7 @@ npm run watch         # Build with watch mode
 
 ## 📄 Lizenz
 
-Dieses Projekt ist unter der MIT-Lizenz veröffentlicht.
+Dieses Projekt ist nicht mit der MIT-Lizenz veröffentlicht!
 
 ## 🙏 Danksagung
 
